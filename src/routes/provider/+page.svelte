@@ -1,5 +1,9 @@
 <script lang="ts">
+	import Details from './details.svelte';
+
 	export let data;
+
+	$: ({providers} = data)
 </script>
 
 <h1>Provider</h1>
@@ -28,11 +32,17 @@
 
 <ul>
 	{#each data.providers as provider}
-		<li>
-			{provider.name}
-		</li>
+		<ul>
+			<li>{provider.name}
+			<nav>
+				<a href="/details.svelte">Details</a>
+			</nav>
+			</li>
+		</ul>
 	{/each}
 </ul>
+
+
 
 <style>
 	form {
