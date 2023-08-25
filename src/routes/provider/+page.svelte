@@ -3,7 +3,7 @@
 
 	export let data;
 
-	$: ({providers} = data)
+	$: ({ providers } = data);
 </script>
 
 <h1>Provider</h1>
@@ -33,16 +33,14 @@
 <ul>
 	{#each data.providers as provider}
 		<ul>
-			<li>{provider.name}
-			<nav>
-				<a href="/details.svelte">Details</a>
-			</nav>
+			<li>
+				<nav>
+					<a href="/provider/{provider.id}">{provider.name}</a>
+				</nav>
 			</li>
 		</ul>
 	{/each}
 </ul>
-
-
 
 <style>
 	form {
