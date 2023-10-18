@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Provider {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String?
+  logo_uri    String?
+  isActive    Boolean
+  resource Resource[]
+  
+}
+
+model Resource {
+  id          Int @id @default(autoincrement())
+  type        String
+  name        String @unique
+  description String?
+  url         String @unique
+  isActive    Boolean @default(true)
+  providers   Provider[]
+}
