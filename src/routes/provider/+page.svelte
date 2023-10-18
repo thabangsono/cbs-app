@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Details from './details.svelte';
 
 	export let data;
 
-	$: ({ providers } = data);
 </script>
 
 <h1>Provider</h1>
@@ -36,6 +34,10 @@
 			<li>
 				<nav>
 					<a href="/provider/{provider.id}">{provider.name}</a>
+
+					<form method="POST" action="?/delete">
+					<button name="provider_id" value={provider.id}>Delete</button>
+					</form>
 				</nav>
 			</li>
 		</ul>

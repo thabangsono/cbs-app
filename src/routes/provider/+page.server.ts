@@ -44,5 +44,31 @@ export const actions = {
 		} catch (e) {
 			console.log(e);
 		}
+	},
+
+
+	async delete({ request }) {
+		const form = await request.formData();
+
+		const schema = zfd.formData({
+			provider_id: zfd.numeric(),
+		})
+
+		const parsedForm = schema.safeParse(form);
+		
+
+
+		if (!parsedForm.success){
+			throw error(404, {
+				message: parsedForm.error.message
+			});
+		}
+
+		const { provider_id } = parsedForm.data;
+		 
+		await prisma.provider.delete({
+			where: { id: provider_id }
+		});
+		
 	}
-};
+}
