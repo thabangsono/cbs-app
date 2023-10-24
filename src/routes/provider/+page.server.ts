@@ -27,12 +27,18 @@ const schema = zfd.formData({
 
 export const actions = {
 	async create({ request }) {
+		type FormattedErrors = z.inferFlattenedErrors<typeof schema>;
+
 		const form = await request.formData();
 
 		const parsedForm = schema.safeParse(form);
 
 		if (!parsedForm.success) {
-			return fail(400, { error: parsedForm.error.flatten().fieldErrors });
+			const flattenErrors = parsedForm.error.flatten();
+
+			const errors: FormattedErrors = flattenErrors;
+
+			return fail(400, { error: errors.fieldErrors });
 		}
 
 		const { name, description, logo_uri, isActive } = parsedForm.data;

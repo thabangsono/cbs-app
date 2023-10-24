@@ -5,31 +5,30 @@
 
 	export let form;
 
-	export let errors = form?.error;
-	console.log(form?.error);
+	$: errors = form?.error;
 </script>
 
 <h1>Provider</h1>
 
-<form method="POST" action="?/create">
+<form method="POST" action="?/create" use:enhance>
 	<label>
 		Name
 		{#if errors?.name}
-			<label>{errors?.name[0]}</label>
+			<span>{errors.name}</span>
 		{/if}
 		<input name="name" />
 	</label>
 	<label>
 		Description
 		{#if errors?.description}
-			<label>{errors?.description[0]}</label>
+			<span>{errors?.description}</span>
 		{/if}
 		<input name="description" />
 	</label>
 	<label>
 		Logo URI
 		{#if errors?.logo_uri}
-			<label>{errors?.logo_uri[0]}</label>
+			<span>{errors?.logo_uri}</span>
 		{/if}
 		<input name="logo_uri" />
 	</label>
