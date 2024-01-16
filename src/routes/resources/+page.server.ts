@@ -14,9 +14,17 @@ export async function load() {
 }
 
 const schema = zfd.formData({
-	name: zfd.text(),
-	description: zfd.text(z.string().optional()),
-	url: zfd.text(z.string().url()),
+	name: z
+		.string()
+		.min(2, {message: 'Two or more characters required'})
+		.max(25, {message: 'Name should have less than 25 characters'})
+		.trim(),
+
+	description: z
+				.string()
+				.min(10, {message: 'Description should be 10 or more characters' })
+				.max(50, {message: '50 or less charaters required'}),
+	url: z.string().url({ message: 'Enter a valid URL'}),
 	type: zfd.text(),
 	isActive: zfd.checkbox(),
 	providers: zfd.repeatable(z.array(zfd.numeric()))

@@ -11,27 +11,25 @@
 <h1>Provider</h1>
 
 <form method="POST" action="?/create" use:enhance>
-	<label>
-		Name
-		{#if errors?.name}
-			<span>{errors.name}</span>
-		{/if}
+		<label for="name">Name</label>
 		<input name="name" />
-	</label>
-	<label>
-		Description
-		{#if errors?.description}
-			<span>{errors?.description}</span>
+		{#if errors?.name}
+			<span class="small">{errors.name}</span>
 		{/if}
-		<input name="description" />
-	</label>
-	<label>
+
+	<label for="description">Description</label>
+	<input name="description" />
+		{#if errors?.description}
+			<span class="small">{errors?.description}</span>
+		{/if}
+
+	<label for="logo_uri"></label>
+	<input name="logo_uri" />
 		Logo URI
 		{#if errors?.logo_uri}
-			<span>{errors?.logo_uri}</span>
+			<span class="small">{errors?.logo_uri}</span>
 		{/if}
-		<input name="logo_uri" />
-	</label>
+		
 	<label>
 		Activate
 		<input name="isActive" type="checkbox" />
@@ -61,5 +59,14 @@
 	form {
 		display: grid;
 		width: 250px;
+	}
+
+	label {
+		display: block;
+		margin-top: 20px;
+	}
+	span.small {
+		font-size: smaller;
+		color: #ff0000;
 	}
 </style>
