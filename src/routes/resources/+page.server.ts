@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { z } from 'zod';
 import { zfd } from 'zod-form-data';
-import { error, fail } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 
 const prisma = new PrismaClient();
 
